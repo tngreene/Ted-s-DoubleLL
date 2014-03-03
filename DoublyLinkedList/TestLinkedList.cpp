@@ -11,6 +11,7 @@ TestLinkedList::~TestLinkedList(void)
 
 int main()
 {
+	Node<char> outList[1024];
 	{
 	LinkedList<char> ll;
 	char a = 'a';
@@ -23,8 +24,7 @@ int main()
 	char x = 'x';
 	char y = 'y';
 	char z = 'z';
-	char head = 'H';
-	char tail = 'T';
+	
 	//All the same as count-1
 	ll.insertNode(a,-1);
 	ll.insertNode(b,0);
@@ -34,13 +34,16 @@ int main()
 	ll.insertNode(f,4);
 	ll.insertNode(g,5);
 
+	ll.insertNode(b,6);
+	ll.insertNode(b,3);
+	ll.insertNode(b,1);
 	//Cases for remove: Remove head
-	ll.removeNode(0);
+	//ll.removeNode(0);
 	//Cases for remove: remove tail
-	ll.removeNode(ll.getCount()-1);
+	//ll.removeNode(ll.getCount()-1);
 	//Cases for remove: remove inside
-	ll.removeNode(3);
-
+	//ll.removeNode(3);
+	
 	//ll.insertNode(x,-1+1);
 	//ll.insertNode(y,0+1);
 	//ll.insertNode(z,1+1);
@@ -54,6 +57,10 @@ int main()
 	Node<char> * ptr0 = ll.traverseForward(ll.getCount()-1,true);
 	cout << endl;
 	Node<char> * ptr1 = ll.traverseReverse(0,true);
+	Node<char> * fOPtr = ll.findFirstOf(b);
+	Node<char> * lOPtr = ll.findLastOf(b);
+	
+	ll.findAll(b,outList);
 	ptr1 = ll.traverseReverse(1,true);
 	}
 	return 0;

@@ -164,8 +164,8 @@ public:
             if (count == 1)//Special case for only having one 
             {
 				delete nodeAtIndex;
-				headNode == NULL;
-                tailNode == NULL;
+				headNode = NULL;
+                tailNode = NULL;
 				count = 0;
 				return;
             }
@@ -217,20 +217,68 @@ public:
 	//Trys to find some kind of data in the list
 	//If found it will return a pointer to that node
 	//If not found it will return NULL
-	Node<T> * find(T& data)
+	Node<T> * findFirstOf(T& data)
 	{
+		//Create a utilityNode for moving through
 		Node<T> * utilNode = headNode;
-		if(utilNode->getNodeData() == data)
-		{
-			return utilNode;
-		}
+
+		//Keep going until you have the end of the list
 		while(utilNode != NULL)
 		{
-			
+			//If the data in the current node is what you're loooking for
+			if(utilNode->getNodeData() == data)
+			{
+				return utilNode;
+			}
+			//otherwise go to the next one
 			utilNode = utilNode->getNext();
-
 		}
+		//If you go through the entire list with out finding something return null
 		return NULL;
+	}
+
+	//Trys to find some kind of data in the list
+	//If found it will return a pointer to that node
+	//If not found it will return NULL
+	Node<T> * findLastOf(T& data)
+	{
+		//Create a utilityNode for moving through
+		Node<T> * utilNode = tailNode;
+
+		//Keep going until you have the end of the list
+		while(utilNode != NULL)
+		{
+			//If the data in the current node is what you're looking for
+			if(utilNode->getNodeData() == data)
+			{
+				return utilNode;
+			}
+			//otherwise go to the previous one
+			utilNode = utilNode->getPrev();
+		}
+		//If you go through the entire list with out finding something return null
+		return NULL;
+	}
+
+	void findAll(T& data, Node<T> outList[])
+	{
+		//Create a utilityNode for moving through
+		Node<T> * utilNode = headNode;
+
+		int i = 0;
+		//Keep going until you have the end of the list
+		while(utilNode != NULL)
+		{
+			//If the data in the current node is what you're looking for
+			if(utilNode->getNodeData() == data)
+			{
+				//Copy that
+				outList[i] = *utilNode;
+				i++;//Increment only when another node has been copied
+			}
+			//otherwise go to the next one
+			utilNode = utilNode->getNext();
+		}
 	}
 
 	//Walks down list to index N (inclusive), returns the pointer to that node
