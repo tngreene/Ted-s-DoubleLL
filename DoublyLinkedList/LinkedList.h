@@ -2,7 +2,7 @@
 	Date: 02/28/2014
 	Purpose: To represent a linked list made of nodes and methods to transverse it and edit it
 	Exceptions: your type T must be able to be printed out using cout OR be very aware not to pass in anything
-	for the traverse method
+	for the traverse method, must have operator overloads for == and !=,
 */
 #pragma once
 #include <iostream>
@@ -33,6 +33,10 @@ public:
 
 	~LinkedList(void)
 	{
+		while(count > 0)
+		{
+			removeNode(0);
+		}
 	}
 
 	//Gets the head of the list in the form of a constant pointer
@@ -118,7 +122,7 @@ public:
 			}
 			else
 			{
-				nodeAtIndex = traverseReverse(index);
+				nodeAtIndex = traverseReverse(getCount()-1-index);
 			}
 			//Make the new node point where it should be
 			newNode->setPrev(nodeAtIndex);
@@ -144,7 +148,8 @@ public:
         }
          //This represents n, we will be removing
 		Node<T> * nodeAtIndex;
-
+		
+		int middleOfList = floor(count/2);
 		if(index <= middleOfList)
 		{	
 			nodeAtIndex = traverseForward(index);
@@ -168,8 +173,8 @@ public:
             //Set the head equal to the 2nd node
             headNode = nodeAtIndex->getNext();
             //Set the 2nd node's previous property equal to the null
-            //current.Next.Previous = null;
-			nodeAtIndex->getNext()->getPrev() = NULL;
+            
+			nodeAtIndex->getNext()->setPrev(NULL);
             
 			//Now that the list has moved on delete this node
 			delete nodeAtIndex;
@@ -179,13 +184,11 @@ public:
         }
 		else if (index == count-1)//If we are removing the tail
         {
-            
             //Set the tail equal to the 2nd to last node
 			tailNode = nodeAtIndex->getPrev();
 
             //Set the 2nd to last node's previous property equal to null
-            current.Previous.Next = null;
-			nodeAtIndex->getPrev()->getNext() = NULL;
+			nodeAtIndex->getPrev()->setNext(NULL);
 
             //Now that the node is no longer needed delete it
 			delete nodeAtIndex;
@@ -196,10 +199,10 @@ public:
         else
         {
             //Moves the previous node's connection to the next nodes connection
-			nodeAtIndex->getPrev()->getNext() = nodeAtIndex->getNext();
+			nodeAtIndex->getPrev()->setNext(nodeAtIndex->getNext());
 
             //Moves the previous node's connection to the next nodes connection
-			nodeAtIndex->getNext()->getPrev() = nodeAtIndex->getPrev();
+			nodeAtIndex->getNext()->setPrev(nodeAtIndex->getPrev());
 
 			//Delete the now unneeded node
             delete nodeAtIndex;
@@ -216,6 +219,17 @@ public:
 	//If not found it will return NULL
 	Node<T> * find(T& data)
 	{
+		Node<T> * utilNode = headNode;
+		if(utilNode->getNodeData() == data)
+		{
+			return utilNode;
+		}
+		while(utilNode != NULL)
+		{
+			
+			utilNode = utilNode->getNext();
+
+		}
 		return NULL;
 	}
 
@@ -287,16 +301,17 @@ public:
 
 		int i = 0;
 		//While the utility is not nothing AND there is an index
-		while(utilNode != NULL && toIndex > 0)
+		//while(utilNode != NULL && toIndex > 0)
+		for (int i = getCount()-1; i > toIndex; i--)
 		{
 			//Traverse down the list by getting the previous node and setting it to this one
 			utilNode = utilNode->getPrev();
 
-			toIndex--;
-			i++;
+			//toIndex--;
+			//i++;
 			if(printData == true)
 			{
-				cout << "N#: " << count-1 - i << " Data: " << utilNode->getNodeData() << "\n";
+				cout << "N#: " << i-1 << " Data: " << utilNode->getNodeData() << "\n";
 			}
 		}
 
