@@ -2,7 +2,7 @@
 	Date: 02/28/2014
 	Purpose: To represent a linked list made of nodes and methods to transverse it and edit it
 	Exceptions: your type T must be able to be printed out using cout OR be very aware not to pass in anything
-	for the traverse method, must have operator overloads for == and !=,
+	for the traverse method, must have operator overloads for == and !=
 */
 #pragma once
 #include <iostream>
@@ -22,6 +22,7 @@ private:
 
 	//The number of nodes in the list
 	int count;
+
 public:
 	LinkedList(void)
 	{
@@ -260,6 +261,8 @@ public:
 		return NULL;
 	}
 
+	//Finds all the nodes with a certain data point
+	//and stores it in an array of Nodes
 	void findAll(T& data, Node<T> outList[])
 	{
 		//Create a utilityNode for moving through
@@ -306,7 +309,7 @@ public:
 			cout << "N#: H Data: " << utilNode->getNodeData() << "\n";
 		}
 		
-		//While the utility is not nothing AND there is an index
+		//For the as many points up to the chosen index
 		for (int i = 0; i < toIndex; i++)
         {
 			//Traverse down the list by getting the next node and setting it to this one
@@ -347,16 +350,12 @@ public:
 			cout << "N#: T Data: " << utilNode->getNodeData() << "\n";
 		}
 
-		int i = 0;
-		//While the utility is not nothing AND there is an index
-		//while(utilNode != NULL && toIndex > 0)
+		//For the length of the array
 		for (int i = getCount()-1; i > toIndex; i--)
 		{
 			//Traverse down the list by getting the previous node and setting it to this one
 			utilNode = utilNode->getPrev();
 
-			//toIndex--;
-			//i++;
 			if(printData == true)
 			{
 				cout << "N#: " << i-1 << " Data: " << utilNode->getNodeData() << "\n";

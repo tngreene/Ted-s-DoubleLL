@@ -78,11 +78,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DataFile.cpp" />
     <ClCompile Include="TestLinkedList.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DataFile.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="TestLinkedList.h" />

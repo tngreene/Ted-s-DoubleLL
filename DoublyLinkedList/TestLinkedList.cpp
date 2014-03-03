@@ -1,5 +1,9 @@
 #include "TestLinkedList.h"
-
+/*	Name: Theodore N Greene
+	Date: 3/3/2014
+	Purpose: To test linked list methods
+	Exceptions: do it all in main
+*/
 TestLinkedList::TestLinkedList(void)
 {
 }
@@ -33,95 +37,40 @@ int main()
 	ll.insertNode(e,3);
 	ll.insertNode(f,4);
 	ll.insertNode(g,5);
+	
+	ll.traverseForward(ll.getCount()-1,true);
 
+	ll.traverseReverse(ll.getCount()-1,true);
 	ll.insertNode(b,6);
 	ll.insertNode(b,3);
 	ll.insertNode(b,1);
+	ll.traverseForward(ll.getCount()-1,true);
+
+	ll.traverseReverse(ll.getCount()-1,true);
+
 	//Cases for remove: Remove head
-	//ll.removeNode(0);
+	ll.removeNode(0);
 	//Cases for remove: remove tail
-	//ll.removeNode(ll.getCount()-1);
+	ll.removeNode(ll.getCount()-1);
 	//Cases for remove: remove inside
-	//ll.removeNode(3);
-	
-	//ll.insertNode(x,-1+1);
-	//ll.insertNode(y,0+1);
-	//ll.insertNode(z,1+1);
+	ll.removeNode(3);
 
-	//ll.removeNode(1);
-	//ll.removeNode(2);
-	//ll.removeNode(3);
-	//ll.insertNode(h,7-1);
-	//ll.insertNode(i,8-1);
+	ll.traverseForward(ll.getCount()-1,true);
 
-	Node<char> * ptr0 = ll.traverseForward(ll.getCount()-1,true);
-	cout << endl;
-	Node<char> * ptr1 = ll.traverseReverse(0,true);
+	ll.traverseReverse(ll.getCount()-1,true);
+	ll.insertNode(x,-1);
+	ll.insertNode(y,ll.getCount()-1);
+	ll.insertNode(z,2);
+
+	ll.traverseForward(ll.getCount()-1,true);
+
+	ll.traverseReverse(ll.getCount()-1,true);
+
 	Node<char> * fOPtr = ll.findFirstOf(b);
 	Node<char> * lOPtr = ll.findLastOf(b);
 	
 	ll.findAll(b,outList);
-	ptr1 = ll.traverseReverse(1,true);
-	}
-	return 0;
-	//Create the data reader
-	/*DataFile dataFile("Sample1.txt");
-
-	//Open the file and save any error codes
-	int openError = dataFile.openFile();
-
-	if(openError != 0)
-	{
-		system("pause");
-		return 0;
-	}
-
-	//Our linked List for this test
-	LinkedList linkedList;
-
-	char * tempLine;
-	//while there are still words to read
-	/*while(true)
-	{
-		tempLine = dataFile.nextWord();
-		if(tempLine != NULL)
-		{
-			linkedList.insertWord(tempLine);
-		}
-		else
-		{
-			break;
-		}
-	}*/
-	//dataFile.openFile();
-
-	/*Node node("Balls");
-	cout << node.getNodeData() << endl;
-	Node* ptrN = node.getNext();
-	Node* ptrP = node.getNext();
-	
-	Node newNode("Balls 2");
-	node.setNext(newNode.getNext());
-	cout << node.getNext();
-	cout << node.getPrev();
-	
-	LinkedList ll;
-
-	ll.insertWord("Ball");
-		node = *ll.getHead();
-	cout << node.getNodeData();
-	
-	newNode = *ll.getTail();
-	cout <<newNode.getNodeData();
-	ll.insertWord("Barry");
-			node = *ll.getHead();
-	cout << node.getNodeData();
-	
-	newNode = *ll.getTail();
-	cout <<newNode.getNodeData();
+	}//The deconstructor will be called here
 
 	return 0;
-	while(true)
-	{
-	}*/
 }

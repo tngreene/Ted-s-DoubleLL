@@ -1,7 +1,7 @@
 /*	Name: Theodore N Greene
 	Date: 02/28/2014
 	Purpose: To represent a node to be put in a linked list
-	Exceptions: currently can only hold any kind of data, any data type stored in a node must have the following capabilities:
+	Exceptions: currently can only hold any kind of data, any data type stored in a node must have the following capabilities: default constructor
 */
 
 #pragma once
