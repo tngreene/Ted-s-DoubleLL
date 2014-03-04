@@ -263,14 +263,22 @@ public:
 
 	//Finds all the nodes with a certain data point
 	//and stores it in an array of Nodes
-	void findAll(T& data, Node<T> outList[])
+	//Returns true if the operation was a success, false if there was a problem
+	bool findAll(T& data, Node<T> outList[], int sizeOfArr)
 	{
+		//If the size of their array is bigger than the list
+		//Exit early
+		if(sizeOfArr > count-1)
+		{
+			cout << "The size of the array larger than list size-1!" << endl;
+			return false;
+		}
 		//Create a utilityNode for moving through
 		Node<T> * utilNode = headNode;
 
 		int i = 0;
-		//Keep going until you have the end of the list
-		while(utilNode != NULL)
+		//Keep going until you have the end of the list or have went over the size of the array
+		while(utilNode != NULL && i < sizeOfArr)
 		{
 			//If the data in the current node is what you're looking for
 			if(utilNode->getNodeData() == data)
@@ -282,6 +290,8 @@ public:
 			//otherwise go to the next one
 			utilNode = utilNode->getNext();
 		}
+		//Return that all went well
+		return true;
 	}
 
 	//Walks down list to index N (inclusive), returns the pointer to that node

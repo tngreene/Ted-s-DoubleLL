@@ -15,7 +15,7 @@ TestLinkedList::~TestLinkedList(void)
 
 int main()
 {
-	Node<char> outList[1024];
+	Node<char> outList[4];
 	{
 	LinkedList<char> ll;
 	char a = 'a';
@@ -41,13 +41,13 @@ int main()
 	ll.traverseForward(ll.getCount()-1,true);
 
 	ll.traverseReverse(ll.getCount()-1,true);
-	ll.insertNode(b,6);
+	ll.insertNode(b,2);
 	ll.insertNode(b,3);
 	ll.insertNode(b,1);
 	ll.traverseForward(ll.getCount()-1,true);
 
 	ll.traverseReverse(ll.getCount()-1,true);
-
+	/*
 	//Cases for remove: Remove head
 	ll.removeNode(0);
 	//Cases for remove: remove tail
@@ -68,8 +68,8 @@ int main()
 
 	Node<char> * fOPtr = ll.findFirstOf(b);
 	Node<char> * lOPtr = ll.findLastOf(b);
-	
-	ll.findAll(b,outList);
+	*/
+	ll.findAll(b,outList,4);
 	}//The deconstructor will be called here
 
 	return 0;
